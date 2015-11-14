@@ -10,7 +10,9 @@ before_install:
   - sudo apt-get install -y -qq cmake libarmadillo-dev
 
 script:
-  - mkdir build && build && cmake .. && make
+  - mkdir build && cd build
+  - cmake ..
+  - make
 
-after_script:
+after_success:
   - ./main
