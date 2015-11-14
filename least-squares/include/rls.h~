@@ -1,0 +1,18 @@
+#ifndef RLS_H_
+#define RLS_H_
+
+#include <armadillo>
+
+namespace ls {
+  class RecursiveLeastSquares {
+  public:
+    RecursiveLeastSquares();
+    virtual ~RecursiveLeastSquares();
+    void printMat() const;
+
+  private:
+    arma::mat matrix;
+  };
+}
+
+#endif /* RLS_H_ */
