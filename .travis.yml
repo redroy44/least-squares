@@ -7,8 +7,10 @@ before_install:
   - echo $LANG
   - echo $LC_ALL
   - sudo apt-get update -qq
-  - sudo apt-get install cmake armadillo
+  - sudo apt-get install -y -qq cmake libarmadillo
 
 script:
   - mkdir build && build && cmake .. && make
 
+after_script:
+  - ./main
