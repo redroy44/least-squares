@@ -15,8 +15,8 @@ before_install:
 install:
 - if [ "$CXX" = "g++" ]; then export CXX="g++-5" CC="gcc-5"; fi
 - export PATH=$PWD/cmake-3.4.0-Linux-x86_64/bin/:$PATH
-- cd armadillo-6.200.4 && ./configure && make
-- export PATH=$PWD/armadillo-6.200.4:$PWD/armadillo-6.200.4/include:$PATH
+- cd armadillo-6.200.4 && cmake . && make && make install DESTDIR=./
+- export PATH=$PWD/usr/include:$PWD/usr/lib:$PATH
 - cd ..
 
 
