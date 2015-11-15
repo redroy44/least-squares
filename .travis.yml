@@ -7,7 +7,10 @@ before_install:
   - echo $LANG
   - echo $LC_ALL
   - sudo apt-get update -qq
-  - sudo apt-get install -y -qq cmake libarmadillo-dev
+  - sudo apt-get install -y -qq libarmadillo-dev
+  - wget https://cmake.org/files/v3.4/cmake-3.4.0-Linux-x86_64.tar.gz
+  - tar -xzvf cmake-3.4.0-Linux-x86_64.tar.gz
+  - export PATH=$PATH:$PWD/cmake-3.4.0-Linux-x86_64/bin/
 
 script:
   - mkdir build && cd build
