@@ -34,6 +34,7 @@ addons:
     - ubuntu-toolchain-r-test
     packages:
     - libopenblas-dev
+    - libboost-all-dev
     - liblapack-dev
     - libarpack-dev
     - gcc-5
