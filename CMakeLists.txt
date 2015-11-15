@@ -1,6 +1,6 @@
 cmake_minimum_required(VERSION 3.0)
 
-project (kalman)
+project (least-squares)
 
 find_package(Armadillo REQUIRED)
 
