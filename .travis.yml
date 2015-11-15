@@ -8,10 +8,17 @@ before_install:
   - echo $LC_ALL
   - wget https://cmake.org/files/v3.4/cmake-3.4.0-Linux-x86_64.tar.gz -q --no-check-certificate
   - tar -xzvf cmake-3.4.0-Linux-x86_64.tar.gz
-  - export PATH=$PWD/cmake-3.4.0-Linux-x86_64/bin/:$PATH
+  - wget http://sourceforge.net/projects/arma/files/armadillo-6.200.4.tar.gz -q --no-check-certificate
+  - tar -xzvf armadillo-6.200.4.tar.gz
+
 
 install:
 - if [ "$CXX" = "g++" ]; then export CXX="g++-5" CC="gcc-5"; fi
+- export PATH=$PWD/cmake-3.4.0-Linux-x86_64/bin/:$PATH
+- cd armadillo-6.200.4 && ./configure && make
+- export PATH=$PWD/armadillo-6.200.4:$PWD/armadillo-6.200.4/include:$PATH
+- cd ..
+
 
 script:
   - mkdir build && cd build
@@ -26,7 +33,9 @@ addons:
     sources:
     - ubuntu-toolchain-r-test
     packages:
-    - libarmadillo-dev
+    - libopenblas-dev
+    - liblapack-dev
+    - libarpack-dev
     - gcc-5
     - g++-5
 notifications:
