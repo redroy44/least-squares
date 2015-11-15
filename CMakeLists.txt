@@ -6,7 +6,7 @@ find_package(Armadillo REQUIRED)
 
 set(CMAKE_BUILD_TYPE Release)
 
-include_directories(${CMAKE_CURRENT_SOURCE_DIR}/include)
+include_directories(${CMAKE_CURRENT_SOURCE_DIR}/include ${ARMADILLO_INCLUDE_DIR})
 add_library(ls SHARED ${CMAKE_CURRENT_SOURCE_DIR}/src/ls.cpp       
                       ${CMAKE_CURRENT_SOURCE_DIR}/src/rls.cpp)
 
