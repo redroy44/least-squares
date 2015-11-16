@@ -11,6 +11,8 @@ find_package(Boost REQUIRED)
 MESSAGE(STATUS ${Boost_circular_buffer_LIBRARY})
 
 set(CMAKE_BUILD_TYPE Release)
+set(CMAKE_CXX_FLAGS_DEBUG "${CMAKE_CXX_FLAGS_DEBUG} -O0")
+set(CMAKE_CXX_FLAGS_RELEASE "${CMAKE_CXX_FLAGS_RELEASE} -O3 -march=native")
 
 include_directories(${CMAKE_CURRENT_SOURCE_DIR}/include
                     ${ARMADILLO_INCLUDE_DIR}
@@ -19,7 +21,7 @@ include_directories(${CMAKE_CURRENT_SOURCE_DIR}/include
 add_library(ls SHARED ${CMAKE_CURRENT_SOURCE_DIR}/src/ls.cpp       
                       ${CMAKE_CURRENT_SOURCE_DIR}/src/rls.cpp)
 
-set(CMAKE_CXX_FLAGS "-g -Wall -O2 -std=c++11")
+set(CMAKE_CXX_FLAGS "-g -Wall -std=c++11")
 
 message(STATUS ${CMAKE_CXX_FLAGS})
 
