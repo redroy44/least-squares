@@ -29,6 +29,7 @@ namespace ls {
 
      for(unsigned int i = 0; i < m_signal.n_rows; i++) {
        m_phi = indices.subvec(i + 1, i + m_order);
+       m_phi = flipud(m_phi);
        m_phi.transform([&](double val) {return (m_signal(val));});
        //m_phi.print();
        //std::cout << std::endl;
