@@ -1,4 +1,4 @@
-# least-squares ![Travis](https://travis-ci.org/redroy44/least-squares.svg?branch=master)
+# least-squares [![Build Status](https://travis-ci.org/redroy44/least-squares.svg?branch=master)](https://travis-ci.org/redroy44/least-squares)
 library for least squares computation
 - Offline Least Squares - Done
 - Online Least Squares - Done
@@ -7,6 +7,7 @@ library for least squares computation
 - Fast LS
 - Levinson-Durbin
 - Lee-Morf-Friedlander algorithm
+
 Nonstationary:
 - Weighted LS
 - Exponentially Weighted RLS
