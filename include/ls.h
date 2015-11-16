@@ -2,18 +2,24 @@
 #define LS_H_
 
 #include <armadillo>
+#include <boost/circular_buffer.hpp>
+#include <exception>
+#include <string>
 
 namespace ls {
   class LeastSquares {
   public:
-    LeastSquares();
+    LeastSquares(std::string);
     LeastSquares(const arma::vec &signal, const unsigned int &order);
+    LeastSquares(const unsigned int &order);
     virtual ~LeastSquares();
 
     void estimate();
+    void estimate(const boost::circular_buffer<double> &, const double &);
     void print() const;
 
   private:
+    void fill_vector(const boost::circular_buffer<double> &);
     arma::vec m_signal;
     unsigned int m_order;
 
