@@ -1,10 +1,11 @@
 # least-squares ![Travis](https://travis-ci.org/redroy44/least-squares.svg?branch=master)
 library for least squares computation
-- Least Squares
+- Offline Least Squares - Done
+- Online Least Squares - Done
 - Recursive Least Squares
 - Square Root RLS Potter's Algorithm
 - Fast LS
-- Levinson Durbin
+- Levinson-Durbin
 - Lee-Morf-Friedlander algorithm
 Nonstationary:
 - Weighted LS
