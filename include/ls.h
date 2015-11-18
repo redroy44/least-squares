@@ -14,6 +14,8 @@ namespace ls {
     LeastSquares(const unsigned int &order);
     virtual ~LeastSquares();
 
+    const arma::vec& getTheta() const;
+
     void estimate();
     void estimate(const boost::circular_buffer<double> &, const double &);
     void print() const;
