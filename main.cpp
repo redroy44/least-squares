@@ -11,7 +11,7 @@ std::ostream nullstream(0);
 set_stream_err2(nullstream);
 
 // generate signal
-unsigned int order = 3;
+unsigned int order = 2;
 unsigned int length = 1000;
 vec signal = ones(length + order);
 for(unsigned int i = order; i < signal.n_rows; i++) {
