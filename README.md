@@ -1,6 +1,7 @@
 # least-squares [![Build Status](https://travis-ci.org/redroy44/least-squares.svg?branch=master)](https://travis-ci.org/redroy44/least-squares)
 library for least squares computation
 - Offline Least Squares - Done
+- Yule-Walker method
 - Online Least Squares - Done
 - Recursive Least Squares
 - Square Root RLS Potter's Algorithm
