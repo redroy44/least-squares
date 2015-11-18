@@ -15,7 +15,7 @@ unsigned int order = 2;
 unsigned int length = 1000;
 vec signal = ones(length + order);
 for(unsigned int i = order; i < signal.n_rows; i++) {
-   signal(i) = 0.7*signal(i-1) + 0.25*signal(i-2) + 0.1*as_scalar(randn(1));
+   signal(i) = 0.25*signal(i-1) + 0.7*signal(i-2) + 0.1*as_scalar(randn(1));
 }
 signal = signal.rows(order, signal.n_rows-1);
 signal.save("signal.dat", raw_ascii);
@@ -47,7 +47,7 @@ obj2.print();
 
 vec signal_est = ones(length + order);
 vec theta_est = obj.getTheta();
-for(unsigned int i = order; i < signal.n_rows; i++) {
+for(unsigned int i = order; i < signal_est.n_rows; i++) {
    signal_est(i) = theta_est(0)*signal_est(i-1) + theta_est(1)*signal_est(i-2);
 }
 signal_est = signal_est.rows(order, signal_est.n_rows-1);
