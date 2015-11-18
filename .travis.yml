@@ -18,8 +18,9 @@ script:
 - mkdir build && cd build
 - cmake ..
 - make
-after_success:
 - "./main"
+after_success:
+- gnuplot ../plot.gp
 addons:
   apt:
     sources:
@@ -31,6 +32,7 @@ addons:
     - libarpack-dev
     - gcc-5
     - g++-5
+    - gnuplot
 notifications:
   email: false
 sudo: false
@@ -43,6 +45,7 @@ deploy:
   file:
     - "libls.so"
     - "main"
+    - "signal_plot.jpg"
   skip_cleanup: true
   on:
     tags: true

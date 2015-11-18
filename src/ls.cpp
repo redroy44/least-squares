@@ -3,7 +3,7 @@
 
 namespace ls {
   LeastSquares::LeastSquares(std::string s) {
-    std::cout << "Hello from LeastSquares library" <<std::endl << s << std::endl;
+    std::cout << "Hello from LeastSquares library" <<std::endl << s << std::endl << std::endl;
   }
 
   LeastSquares::LeastSquares(const arma::vec &signal, const unsigned int &order) : LeastSquares("LS offline estimation") {
@@ -26,6 +26,10 @@ namespace ls {
 
   LeastSquares::~LeastSquares() {
 	// TODO Auto-generated destructor stub
+  }
+
+  const arma::vec& LeastSquares::getTheta() const {
+     return m_theta;
   }
 
   void LeastSquares::estimate() {
