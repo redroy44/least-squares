@@ -46,9 +46,9 @@ for(unsigned int i = order; i < signal.n_rows; i++) {
 obj2.print();
 
 vec signal_est = ones(length + order);
-vec theta_est = obj.getTheta();
+vec theta_est = obj2.getTheta();
 for(unsigned int i = order; i < signal_est.n_rows; i++) {
-   signal_est(i) = theta_est(0)*signal_est(i-1) + theta_est(1)*signal_est(i-2);
+   signal_est(i) = theta_est(0)*signal_est(i-1) + theta_est(1)*signal_est(i-2) + sqrt(obj2.getNoiseVar())*as_scalar(randn(1));
 }
 signal_est = signal_est.rows(order, signal_est.n_rows-1);
 signal_est.save("signal_est_LS.dat", raw_ascii);

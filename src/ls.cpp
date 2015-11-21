@@ -14,6 +14,9 @@ namespace ls {
      m_phi = arma::zeros(order);
      m_theta = arma::zeros(order);
      m_aux_vector = arma::zeros(order);
+     m_driving_noise = 0;
+     m_signal_length = signal.n_rows;
+     m_sum_error = 0;
   }
 
   LeastSquares::LeastSquares(const unsigned int &order) : LeastSquares("LS online estimation") {
@@ -22,6 +25,9 @@ namespace ls {
      m_phi = arma::zeros(order);
      m_theta = arma::zeros(order);
      m_aux_vector = arma::zeros(order);
+     m_driving_noise = 0;
+     m_signal_length = 0;
+     m_sum_error = 0;
   }
 
   LeastSquares::~LeastSquares() {
@@ -30,6 +36,10 @@ namespace ls {
 
   const arma::vec& LeastSquares::getTheta() const {
      return m_theta;
+  }
+
+  const double& LeastSquares::getNoiseVar() const {
+     return m_driving_noise;
   }
 
   void LeastSquares::estimate() {
@@ -51,15 +61,19 @@ namespace ls {
        }
      }
     m_theta = arma::solve(m_regression_matrix, m_aux_vector);
+    m_driving_noise = 0;
   }
 
   void LeastSquares::estimate(const boost::circular_buffer<double> &phi, const double &sample) {
+   m_signal_length++;
    fill_vector(phi);
    m_regression_matrix += m_phi * m_phi.t();
    if(arma::det(m_regression_matrix) < 1)
       std::cout << "det A: " << arma::det(m_regression_matrix) << std::endl;
    m_aux_vector += sample * m_phi;
    m_theta = arma::solve(m_regression_matrix, m_aux_vector);
+   m_sum_error += as_scalar(arma::square(sample - m_phi.t()*m_theta));
+   m_driving_noise = m_sum_error/double(m_signal_length);
   }
 
   void LeastSquares::print() const {
@@ -68,6 +82,7 @@ namespace ls {
      std::cout << "Regression matrix determinant: " << arma::det(m_regression_matrix) << std::endl;
      std::cout << "Auxiliary vector: \n" << m_aux_vector << std::endl;
      std::cout << "Theta: \n" << m_theta << std::endl;
+     std::cout << "Driving noise variance: \n" << m_driving_noise << std::endl;
   }
 
   void LeastSquares::fill_vector(const boost::circular_buffer<double> &phi) {
