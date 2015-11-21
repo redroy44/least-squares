@@ -58,10 +58,11 @@ namespace ls {
        m_regression_matrix += m_phi * m_phi.t();
        if(i < m_signal.n_rows - 1) {
          m_aux_vector += m_signal(i + 1) * m_phi;
+         m_sum_error += as_scalar(arma::square(m_signal(i + 1) - m_phi.t()*m_theta));
        }
      }
     m_theta = arma::solve(m_regression_matrix, m_aux_vector);
-    m_driving_noise = 0;
+    m_driving_noise = m_sum_error/double(m_signal_length);
   }
 
   void LeastSquares::estimate(const boost::circular_buffer<double> &phi, const double &sample) {
