@@ -26,6 +26,7 @@ addons:
     sources:
     - ubuntu-toolchain-r-test
     packages:
+    - ruby2.1
     - libopenblas-dev
     - libboost-all-dev
     - liblapack-dev
