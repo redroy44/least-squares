@@ -15,6 +15,7 @@ namespace ls {
     virtual ~LeastSquares();
 
     const arma::vec& getTheta() const;
+    const double& getNoiseVar() const;
 
     void estimate();
     void estimate(const boost::circular_buffer<double> &, const double &);
@@ -29,6 +30,9 @@ namespace ls {
     arma::vec m_theta;
     arma::vec m_phi;
     arma::vec m_aux_vector;
+    double m_driving_noise;
+    double m_sum_error;
+    unsigned int m_signal_length;
 
   };
 
