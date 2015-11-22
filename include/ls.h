@@ -7,6 +7,21 @@
 #include <string>
 
 namespace ls {
+   class IEstimator {
+   public:
+      virtual ~IEstimator();
+
+      virtual void estimate() = 0;
+      virtual void estimate(const arma::vec &, const double &) = 0;
+
+   protected:
+      arma::vec m_signal;
+      arma::vec m_theta;
+      arma::vec m_phi;
+      double m_driving_noise;
+      unsigned int m_signal_length;
+   };
+
   class LeastSquares {
   public:
     LeastSquares(std::string);
