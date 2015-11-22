@@ -1,4 +1,4 @@
-#include "include/ls.h"
+#include "../include/ls.h"
 #include <iostream>
 
 namespace ls {
