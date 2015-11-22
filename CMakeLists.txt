@@ -21,7 +21,7 @@ include_directories(${CMAKE_CURRENT_SOURCE_DIR}/include
 add_library(ls SHARED ${CMAKE_CURRENT_SOURCE_DIR}/src/ls.cpp       
                       ${CMAKE_CURRENT_SOURCE_DIR}/src/rls.cpp)
 
-set(CMAKE_CXX_FLAGS "-g -Wall -std=c++11")
+set(CMAKE_CXX_FLAGS "-g -Wall -std=c++14")
 
 message(STATUS "Default flags: ${CMAKE_CXX_FLAGS}")
 message(STATUS "Release flags: ${CMAKE_CXX_FLAGS_RELEASE}")
