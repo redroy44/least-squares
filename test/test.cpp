@@ -2,10 +2,11 @@
 #include "ls.h"
 #include <armadillo>
 #include <boost/circular_buffer.hpp>
+#include "gtest/gtest.h"
 
 using namespace arma;
 
-int main () {
+int dupa () {
 arma_rng::set_seed(666);
 std::ostream nullstream(0);
 set_stream_err2(nullstream);
@@ -13,12 +14,12 @@ set_stream_err2(nullstream);
 // generate signal
 unsigned int order = 2;
 unsigned int length = 1000;
+// signal(i) = 0.25*signal(i-1) + 0.7*signal(i-2) + 0.1*as_scalar(randn(1));
+
 vec signal = ones(length + order);
-for(unsigned int i = order; i < signal.n_rows; i++) {
-   signal(i) = 0.25*signal(i-1) + 0.7*signal(i-2) + 0.1*as_scalar(randn(1));
-}
-signal = signal.rows(order, signal.n_rows-1);
-signal.save("signal.dat", raw_ascii);
+
+if(signal.load("../test/data/signal.dat", raw_ascii);
+signal.print();
 
 // offline estimation
 ls::LeastSquares obj = ls::LeastSquares(signal, order);
@@ -53,5 +54,14 @@ for(unsigned int i = order; i < signal_est.n_rows; i++) {
 signal_est = signal_est.rows(order, signal_est.n_rows-1);
 signal_est.save("signal_est_LS.dat", raw_ascii);
 
-return 0;
+}
+
+TEST(DummyTest, Positive) {
+  EXPECT_EQ(1, 1);
+}
+
+GTEST_API_ int main(int argc, char **argv) {
+  printf("Running main() from test.cpp\n");
+  testing::InitGoogleTest(&argc, argv);
+  return RUN_ALL_TESTS();
 }

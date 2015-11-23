@@ -8,11 +8,15 @@ before_install:
 - tar -xzvf cmake-3.4.0-Linux-x86_64.tar.gz
 - wget http://sourceforge.net/projects/arma/files/armadillo-6.200.4.tar.gz -q --no-check-certificate
 - tar -xzvf armadillo-6.200.4.tar.gz
+- wget https://github.com/google/googletest/archive/release-1.7.0.zip -q --no-check-certificate
+- unzip release-1.7.0.zip
 install:
 - if [ "$CXX" = "g++" ]; then export CXX="g++-5" CC="gcc-5"; fi
 - export PATH=$PWD/cmake-3.4.0-Linux-x86_64/bin/:$PATH
 - cd armadillo-6.200.4 && cmake . && make && make install DESTDIR=./
-- export PATH=$PWD/usr/include:$PWD/usr/lib:$PATH
+- export PATH=$PWD/usr/include:$PWD/usr/lib:$PATH && cd ..
+- cd googletest-release-1.7.0 && mkdir build && cd build && cmake -DBUILD_SHARED_LIBS=ON -G"Unix Makefiles" .. && make
+- export PATH=$PWD/../include:$PWD:$PATH
 - cd ..
 script:
 - mkdir build && cd build
