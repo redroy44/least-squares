@@ -6,7 +6,7 @@
 
 using namespace arma;
 
-int dupa () {
+void dupa () {
 arma_rng::set_seed(666);
 std::ostream nullstream(0);
 set_stream_err2(nullstream);
@@ -18,7 +18,7 @@ unsigned int length = 1000;
 
 vec signal = ones(length + order);
 
-if(signal.load("../test/data/signal.dat", raw_ascii);
+if(signal.load("../test/data/signal.dat", raw_ascii)){};
 signal.print();
 
 // offline estimation

@@ -16,13 +16,13 @@ install:
 - cd armadillo-6.200.4 && cmake . && make && make install DESTDIR=./
 - export PATH=$PWD/usr/include:$PWD/usr/lib:$PATH && cd ..
 - cd googletest-release-1.7.0 && mkdir build && cd build && cmake -DBUILD_SHARED_LIBS=ON -G"Unix Makefiles" .. && make
-- export PATH=$PWD/../include:$PWD:$PATH
+- export PATH=$PWD/../include:$PWD:$PATH && cd ..
 - cd ..
 script:
 - mkdir build && cd build
 - cmake ..
 - make
-- "./main"
+- "./runTest"
 after_success:
 - gnuplot ../plot.gp
 addons:
