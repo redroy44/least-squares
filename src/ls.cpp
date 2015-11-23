@@ -3,11 +3,10 @@
 
 namespace ls {
    LeastSquares::LeastSquares(std::string s) {
-      std::cout << "Hello from LeastSquares library" <<std::endl << s << std::endl << std::endl;
+      std::cout << s << std::endl;
    }
 
    LeastSquares::LeastSquares(const arma::vec &signal, const unsigned int &order) : LeastSquares("LS offline estimation") {
-      std::cout << "Signal length: " << signal.n_rows <<std::endl;
       m_signal = signal;
       m_order = order;
       m_regression_matrix = arma::zeros(order, order);
