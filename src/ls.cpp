@@ -2,6 +2,19 @@
 #include <iostream>
 
 namespace ls {
+   const arma::vec& IEstimator::getTheta() const {
+      return m_theta;
+   }
+
+   const double& IEstimator::getNoiseVar() const {
+      return m_driving_noise;
+   }
+
+   void IEstimator::print() const {
+      std::cout << "Theta: \n" << m_theta << std::endl;
+      std::cout << "Driving noise variance: \n" << m_driving_noise << std::endl;
+   }
+
    LeastSquares::LeastSquares(std::string s) {
       std::cout << s << std::endl;
    }
@@ -27,18 +40,6 @@ namespace ls {
       m_driving_noise = 0;
       m_signal_length = 0;
       m_sum_error = 0;
-   }
-
-   LeastSquares::~LeastSquares() {
-      // TODO Auto-generated destructor stub
-   }
-
-   const arma::vec& LeastSquares::getTheta() const {
-      return m_theta;
-   }
-
-   const double& LeastSquares::getNoiseVar() const {
-      return m_driving_noise;
    }
 
    void LeastSquares::estimate() {
