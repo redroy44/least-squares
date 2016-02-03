@@ -9,10 +9,14 @@
 namespace ls {
    class IEstimator {
    public:
-      virtual ~IEstimator();
+      virtual ~IEstimator() {};
 
       virtual void estimate() = 0;
       virtual void estimate(const arma::vec &, const double &) = 0;
+
+      virtual const arma::vec& getTheta() const;
+      virtual const double& getNoiseVar() const;
+      virtual void print() const;
 
    protected:
       arma::vec m_signal;
@@ -22,31 +26,23 @@ namespace ls {
       unsigned int m_signal_length;
    };
 
-  class LeastSquares {
+  class LeastSquares : public IEstimator {
   public:
     LeastSquares(std::string);
     LeastSquares(const arma::vec &signal, const unsigned int &order);
     LeastSquares(const unsigned int &order);
-    virtual ~LeastSquares();
-
-    const arma::vec& getTheta() const;
-    const double& getNoiseVar() const;
+    virtual ~LeastSquares() {};
 
     void estimate();
     void estimate(const arma::vec &, const double &);
     void print() const;
 
   private:
-    arma::vec m_signal;
     unsigned int m_order;
 
     arma::mat m_regression_matrix;
-    arma::vec m_theta;
-    arma::vec m_phi;
     arma::vec m_aux_vector;
-    double m_driving_noise;
     double m_sum_error;
-    unsigned int m_signal_length;
 
   };
 
