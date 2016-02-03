@@ -33,11 +33,10 @@ namespace ls {
     const double& getNoiseVar() const;
 
     void estimate();
-    void estimate(const boost::circular_buffer<double> &, const double &);
+    void estimate(const arma::vec &, const double &);
     void print() const;
 
   private:
-    void fill_vector(const boost::circular_buffer<double> &);
     arma::vec m_signal;
     unsigned int m_order;
 

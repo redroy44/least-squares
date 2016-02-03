@@ -66,9 +66,9 @@ namespace ls {
       m_driving_noise = 0.01;
    }
 
-   void LeastSquares::estimate(const boost::circular_buffer<double> &phi, const double &sample) {
+   void LeastSquares::estimate(const arma::vec &phi, const double &sample) {
       m_signal_length++;
-      fill_vector(phi);
+      m_phi = phi;
       m_regression_matrix += m_phi * m_phi.t();
       if(arma::det(m_regression_matrix) < 1)
          std::cout << "det A: " << arma::det(m_regression_matrix) << std::endl;
@@ -85,12 +85,5 @@ namespace ls {
       std::cout << "Auxiliary vector: \n" << m_aux_vector << std::endl;
       std::cout << "Theta: \n" << m_theta << std::endl;
       std::cout << "Driving noise variance: \n" << m_driving_noise << std::endl;
-   }
-
-   void LeastSquares::fill_vector(const boost::circular_buffer<double> &phi) {
-      if(m_phi.n_rows != phi.size()) throw std::logic_error("Not enough elements in the c_buffer");
-      for (unsigned int i = 0; i < phi.size(); i++) {
-         m_phi(i) = phi[i];
-      }
    }
 }
