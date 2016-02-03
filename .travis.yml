@@ -48,7 +48,7 @@ deploy:
     secure: dqx7Gs+kEM/3PmCDwqjjotUn3LtJokidbJE8I0x/C1/mvR+1dXZWtWJ0dA2o1icx2LB0uoJaBNa/k1IfzRlnpG0gQm3etPirFO27iL730jjCSKVkaHOSIre0f/E8bWp4ekO+HgtQZ5tPtqshEiPb3cxwSsHMd5q2S3qKYfbiEnpJ5JYsmyaVYp3tX+YDmoo9D5C8wCDf71pVzDm17uXcgdHx9OppXxZa6Z3MLn/pTdc7D8HWQn6eNZF4FP512BQLga20MxiE/gMkjfgDjVfiAy4q1heizBRf3BkVqi2DQKtZOlMtz1Sm+WleGH8AEjiwZ9+9GbJTclGl+KZSKkm88F7eQRAtavMg19ctlTAkugcyceI85hwqdLmZqO9AFvrflQAhEIiaKA8faz0xCWfDXVoF5w98Iqvc3rY2NYXiGU5MBUgATb9XBecEQZEp9QlkD/LpRfaa7Tl97IpSh5eOnZBbkJAtSK2co9PZQegGg4ewIihIeAta5iwTa/KGhCU+wxPvjZkdazt6j0d/9OVZzKE8vcw8+4FYXA0Phtasu26piBn5lef/ihh8Yj+7sa86uQ7LJoNIQ3ZF4hLxuhUjBhDPvOmkCwKMEVgz29SxV04nPe7aZPDXLUJNxG0GsGv9kf/rJlFLQmo/QZi6dqnQ83PSix7j2+NsDfK104mHqGc=
   file:
     - "libls.so"
-    - "main"
+    - "runTest"
     - "signal_plot.jpg"
   skip_cleanup: true
   on:
