@@ -39,7 +39,7 @@ TEST(LeastSquares, Online) {
    }
 
    for(unsigned int i = order; i < signal.n_rows; i++) {
-      ASSERT_NO_THROW(obj.estimate(cb, signal(i)));
+      ASSERT_NO_THROW(obj.estimate(std::vector<double>(cb.begin(), cb.end()), signal(i)));
       cb.push_front(signal(i));
    }
    vec signal_est = vec(signal);
