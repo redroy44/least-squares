@@ -13,7 +13,7 @@ find_package(GTest REQUIRED)
 
 MESSAGE(STATUS ${Boost_circular_buffer_LIBRARY})
 
-set(CMAKE_BUILD_TYPE Release)
+set(CMAKE_BUILD_TYPE Debug)
 set(CMAKE_CXX_FLAGS_DEBUG "${CMAKE_CXX_FLAGS_DEBUG}-DDEBUG -O0")
 set(CMAKE_CXX_FLAGS_RELEASE "${CMAKE_CXX_FLAGS_RELEASE} -march=native")
 
@@ -27,6 +27,7 @@ add_library(ls SHARED ${CMAKE_CURRENT_SOURCE_DIR}/src/ls.cpp
 
 set(CMAKE_CXX_FLAGS "-Wall -pedantic -Wextra -std=c++14")
 
+message(STATUS "Build type: ${CMAKE_BUILD_TYPE}")
 message(STATUS "Default flags: ${CMAKE_CXX_FLAGS}")
 message(STATUS "Release flags: ${CMAKE_CXX_FLAGS_RELEASE}")
 message(STATUS "Debug flags: ${CMAKE_CXX_FLAGS_DEBUG}")
