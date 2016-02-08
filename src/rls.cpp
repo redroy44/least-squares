@@ -3,15 +3,22 @@
 #include <armadillo>
 
 namespace ls {
-  RecursiveLeastSquares::RecursiveLeastSquares() {
+  RecursiveLeastSquares::RecursiveLeastSquares(const unsigned int &order) {
     std::cout << "Hello from RecursiveLeastSquares library" <<std::endl;
-    matrix = arma::randu<arma::mat>(3,3);
   }
 
-  RecursiveLeastSquares::~RecursiveLeastSquares() {
-	// TODO Auto-generated destructor stub
+  void RecursiveLeastSquares::print() const {
+     IEstimator::print();
+     std::cout << m_order << std::endl;
   }
-  void RecursiveLeastSquares::printMat() const {
-    std::cout << matrix << std::endl;
+
+  void RecursiveLeastSquares::estimate() {
+     IEstimator::print();
+     std::cout << m_order << std::endl;
+  }
+
+  void RecursiveLeastSquares::estimate(const arma::vec &phi, const double &sample) {
+     IEstimator::print();
+     std::cout << m_order << std::endl;
   }
 }

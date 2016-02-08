@@ -46,14 +46,18 @@ namespace ls {
 
   };
 
-  class RecursiveLeastSquares {
+  class RecursiveLeastSquares : public IEstimator {
   public:
-    RecursiveLeastSquares();
-    virtual ~RecursiveLeastSquares();
-    void printMat() const;
+    RecursiveLeastSquares(const unsigned int &order);
+    virtual ~RecursiveLeastSquares() {};
+
+    void estimate();
+    void estimate(const arma::vec &, const double &);
+    void print() const;
 
   private:
-    arma::mat matrix;
+    unsigned int m_order;
+
   };
 }
 

@@ -2,9 +2,9 @@ cmake_minimum_required(VERSION 3.0)
 
 project (least-squares)
 
-set(Boost_USE_STATIC_LIBS OFF) 
-set(Boost_USE_MULTITHREADED ON)  
-set(Boost_USE_STATIC_RUNTIME OFF) 
+set(Boost_USE_STATIC_LIBS OFF)
+set(Boost_USE_MULTITHREADED ON)
+set(Boost_USE_STATIC_RUNTIME OFF)
 find_package(Boost REQUIRED)
 find_package(Armadillo REQUIRED)
 
@@ -21,7 +21,7 @@ include_directories(${CMAKE_CURRENT_SOURCE_DIR}/include
                     ${Boost_INCLUDE_DIRS}
                     ${GTEST_INCLUDE_DIRS})
 
-add_library(ls SHARED ${CMAKE_CURRENT_SOURCE_DIR}/src/ls.cpp       
+add_library(ls SHARED ${CMAKE_CURRENT_SOURCE_DIR}/src/ls.cpp
                       ${CMAKE_CURRENT_SOURCE_DIR}/src/rls.cpp)
 
 set(CMAKE_CXX_FLAGS "-Wall -pedantic -Wextra -std=c++14")
