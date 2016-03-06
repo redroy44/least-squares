@@ -3,6 +3,8 @@
 #include <armadillo>
 #include <boost/circular_buffer.hpp>
 #include "gtest/gtest.h"
+#include <iostream>
+#include <iomanip>
 
 using namespace arma;
 
@@ -19,8 +21,10 @@ TEST(LeastSquares, Offline) {
    std::unique_ptr<ls::IEstimator> obj(new ls::LeastSquares(signal, order));
    EXPECT_NO_THROW(obj->estimate());
    vec theta_est = obj->getTheta();
-   EXPECT_NEAR(0.25, theta_est(0), 0.5);
-   EXPECT_NEAR(0.7, theta_est(1), 0.5);
+   cout << "Theta: \n";
+   theta_est.raw_print(cout);
+   EXPECT_NEAR(0.25, theta_est(0), 0.055);
+   EXPECT_NEAR(0.7, theta_est(1), 0.05);
    EXPECT_NEAR(0.1, sqrt(obj->getNoiseVar()), 0.05);
 }
 
@@ -44,8 +48,10 @@ TEST(LeastSquares, Online) {
    }
    vec signal_est = vec(signal);
    vec theta_est = obj->getTheta();
-   EXPECT_NEAR(0.25, theta_est(0), 0.5);
-   EXPECT_NEAR(0.7, theta_est(1), 0.5);
+   cout << "Theta: \n";
+   theta_est.raw_print(cout);
+   EXPECT_NEAR(0.25, theta_est(0), 0.05);
+   EXPECT_NEAR(0.7, theta_est(1), 0.05);
    EXPECT_NEAR(0.1, sqrt(obj->getNoiseVar()), 0.05);
 
    for(unsigned int i = order; i < signal_est.n_rows; i++) {
@@ -69,15 +75,22 @@ TEST(RecursiveLeastSquares, Online) {
       cb.push_front(signal(i));
    }
 
+   mat theta_mat = mat(order, length);
    for(unsigned int i = order; i < signal.n_rows; i++) {
       ASSERT_NO_THROW(obj->estimate(std::vector<double>(cb.begin(), cb.end()), signal(i)));
+      theta_mat.col(i) = obj->getTheta();
       cb.push_front(signal(i));
    }
    vec signal_est = vec(signal);
    vec theta_est = obj->getTheta();
-   EXPECT_NEAR(0.25, theta_est(0), 0.5);
-   EXPECT_NEAR(0.7, theta_est(1), 0.5);
+   cout << "Theta: \n";
+   theta_est.raw_print(cout);
+   EXPECT_NEAR(0.25, theta_est(0), 0.05);
+   EXPECT_NEAR(0.7, theta_est(1), 0.05);
    EXPECT_NEAR(0.1, sqrt(obj->getNoiseVar()), 0.05);
+
+   theta_mat = theta_mat.t();
+   theta_mat.save("theta_mat.dat", raw_ascii);
 
    //for(unsigned int i = order; i < signal_est.n_rows; i++) {
       //signal_est(i) = theta_est(0)*signal_est(i-1) + theta_est(1)*signal_est(i-2) + sqrt(obj->getNoiseVar())*as_scalar(randn(1));
@@ -90,6 +103,8 @@ GTEST_API_ int main(int argc, char **argv) {
   printf("Running main() from test.cpp\n");
   ::testing::InitGoogleTest(&argc, argv);
   arma_rng::set_seed(666);
+  cout.precision(11);
+  cout.setf(ios::fixed);
   std::ostream nullstream(0);
   set_stream_err2(nullstream);
   return RUN_ALL_TESTS();
