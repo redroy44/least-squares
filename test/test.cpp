@@ -69,15 +69,15 @@ TEST(RecursiveLeastSquares, Online) {
       cb.push_front(signal(i));
    }
 
-   //for(unsigned int i = order; i < signal.n_rows; i++) {
-      //ASSERT_NO_THROW(obj->estimate(std::vector<double>(cb.begin(), cb.end()), signal(i)));
-      //cb.push_front(signal(i));
-   //}
-   //vec signal_est = vec(signal);
-   //vec theta_est = obj->getTheta();
-   //EXPECT_NEAR(0.25, theta_est(0), 0.5);
-   //EXPECT_NEAR(0.7, theta_est(1), 0.5);
-   //EXPECT_NEAR(0.1, sqrt(obj->getNoiseVar()), 0.05);
+   for(unsigned int i = order; i < signal.n_rows; i++) {
+      ASSERT_NO_THROW(obj->estimate(std::vector<double>(cb.begin(), cb.end()), signal(i)));
+      cb.push_front(signal(i));
+   }
+   vec signal_est = vec(signal);
+   vec theta_est = obj->getTheta();
+   EXPECT_NEAR(0.25, theta_est(0), 0.5);
+   EXPECT_NEAR(0.7, theta_est(1), 0.5);
+   EXPECT_NEAR(0.1, sqrt(obj->getNoiseVar()), 0.05);
 
    //for(unsigned int i = order; i < signal_est.n_rows; i++) {
       //signal_est(i) = theta_est(0)*signal_est(i-1) + theta_est(1)*signal_est(i-2) + sqrt(obj->getNoiseVar())*as_scalar(randn(1));

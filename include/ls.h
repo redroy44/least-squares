@@ -28,7 +28,6 @@ namespace ls {
 
   class LeastSquares : public IEstimator {
   public:
-    LeastSquares(std::string);
     LeastSquares(const arma::vec &signal, const unsigned int &order);
     LeastSquares(const unsigned int &order);
     virtual ~LeastSquares() {};
@@ -38,6 +37,7 @@ namespace ls {
     void print() const;
 
   private:
+    LeastSquares(std::string);
     unsigned int m_order;
 
     arma::mat m_regression_matrix;
@@ -48,6 +48,7 @@ namespace ls {
 
   class RecursiveLeastSquares : public IEstimator {
   public:
+    RecursiveLeastSquares(std::string);
     RecursiveLeastSquares(const unsigned int &order);
     virtual ~RecursiveLeastSquares() {};
 
@@ -58,6 +59,9 @@ namespace ls {
   private:
     unsigned int m_order;
 
+    arma::mat m_inv_regression_matrix;
+    arma::vec m_aux_vector;
+    double m_error;
   };
 }
 
